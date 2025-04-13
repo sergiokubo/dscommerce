@@ -3,6 +3,7 @@ package com.sergiokubo.dscommerce.dto;
 import com.sergiokubo.dscommerce.entities.Order;
 import com.sergiokubo.dscommerce.entities.OrderItem;
 import com.sergiokubo.dscommerce.entities.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -16,7 +17,12 @@ public class OrderDTO {
 
     private ClientDTO client;
     private PaymentDTO payment;
+
+    @NotEmpty(message = "Deve ter pelo menous um item")
     private List<OrderItemDTO> items = new ArrayList<>();
+
+    public OrderDTO(){
+    }
 
     public OrderDTO(Long id, Instant moment, OrderStatus status, ClientDTO client, PaymentDTO payment) {
         this.id = id;
